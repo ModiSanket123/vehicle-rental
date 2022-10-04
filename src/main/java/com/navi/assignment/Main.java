@@ -6,11 +6,12 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        if(args.length < 2 || !Objects.equals(args[0], "-f")){
-            throw new Exception("Invalid parameters, please pass the file-path as: -f ${FILE_PATH}");
+        String filePath = "src/main/resources/test.txt";
+        if(args.length > 1 && Objects.equals(args[0], "-f")){
+            filePath = args[1];
         }
 
-        try(BufferedReader reader = new BufferedReader(new FileReader(args[1]))){
+        try(BufferedReader reader = new BufferedReader(new FileReader(filePath))){
             InputProcessor inputProcessor = new InputProcessor();
             inputProcessor.process(reader);
         }
